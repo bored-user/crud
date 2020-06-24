@@ -1,0 +1,37 @@
+<html>
+<head>
+    {{> partials/style}}
+    <style>
+        h1 {
+            text-decoration: underline;
+        }
+
+        h1 + span {
+            color: #cccccc;
+        }
+
+        p {
+            text-align: justify;
+        }
+
+        p::first-letter {
+            font-size: 54px;
+            font-family: monospace;
+        }
+    </style>
+    <title>CRUD - {{title}}</title>
+</head>
+
+<body>
+    <div id="root">
+        <h1>{{title}}</h1>
+        <span>
+            {{time}}
+            <br>
+            {{tags}}
+        </span>
+        <p>{{body}}</p>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,102 @@
+<html>
+<head>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <title>CRUD - Editar</title>
+    {{> partials/toast.css}}
+    {{> partials/style}}
+    <style>
+        input,
+        textarea,
+        button {
+            color: white;
+            background: none;
+            box-shadow: none;
+            border: 1px solid #cccccc;
+            border-radius: 3px;
+            padding: 15px;
+            font-size: 16px;
+            width: 60%;
+            margin: auto;
+            display: block;
+        }
+
+        textarea {
+            height: 40%;
+            max-height: 50%;
+        }
+
+        input:focus,
+        textarea:focus {
+            border-color: white;
+        }
+
+        .btn_container {
+            display: flex;
+            align-items: center;
+            width: 100%;
+        }
+
+        button {
+            border: 0;
+            padding: 16px;
+            cursor: pointer;
+            font-weight: bold;
+            border-radius: 30px;
+            width: 20%;
+            transition: background-color 350ms;
+        }
+
+        button:nth-of-type(1) {
+            background-color: #cccccc;
+            color: black;
+        }
+
+        button:nth-of-type(1):hover {
+            background-color: rgba(204, 204, 204, 0.8);
+        }
+
+        button:nth-of-type(2) {
+            background-color: #c80003;
+        }
+
+        button:nth-of-type(2):hover {
+            background-color: rgba(200, 0, 3, 0.8);
+        }
+    </style>
+</head>
+
+<body>
+    <form id="root" method="POST">
+        <input required style="margin-bottom: 120px" type="text" name="title" value="{{title}}">
+        <textarea required name="body">{{body}}</textarea>
+        <input required style="margin-top: 120px; margin-bottom: 40px" type="text" name="tags" value="{{tags}}">
+        <div class="btn_container">
+            <button>SALVAR</button>
+            <button>DELETAR</button>
+            <script>
+                $('button:last').on('click', e => {
+                    e.preventDefault();
+
+                    fetch('/items/delete/{{slug}}', { method: 'POST' })
+                        .then(res => {
+                            if (res.status !== 200) {
+                                new Toast('The request to delete {{slug}} failed.', 'background-color: #c80003').show().destroy(2500);
+                            } else {
+                                new Toast('\'{{slug}}\' deleted sucesfully!<br>Redirecting...', 'background-color: green').show().destroy(2500);
+                                $('button').off('click').on('click', e => {
+                                    e.preventDefault();
+
+                                    $('.toast').slideUp(400, () => new Toast('The item has already been deleted! Redirecting...').show());
+                                });
+                                setTimeout(() => window.location.href = '/', 3500);
+                            }
+                        });
+                });
+            </script>
+        </div>
+    </form>
+
+    {{> partials/toast}}
+</body>
+
+</html>

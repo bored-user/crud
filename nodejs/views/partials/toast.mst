@@ -1,0 +1,18 @@
+{{#flashes}}
+    {{> partials/toast.js}}
+    {{#success}}
+        <script>
+            new Toast('{{.}}', 'background-color: green').show().destroy(2500);
+        </script>
+    {{/success}}
+    {{#error}}
+        <script>
+            new Toast('{{.}}', 'background-color: #c80003').show().destroy(2500);
+        </script>
+    {{/error}}
+    {{#info}}
+        <script>
+            new Toast('{{.}}').show().destroy(2500);
+        </script>
+    {{/info}}
+{{/flashes}}

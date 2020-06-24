@@ -1,0 +1,21 @@
+<style>
+    body {
+            margin: 0;
+            background-color: #291a46;
+            font-family: 'Arial', sans-serif;
+            height: 100vh;
+            width: 100vw;
+            box-sizing: border-box;
+            border-top: 5px solid #666666;
+            overflow-x: hidden;
+        }
+
+        #root {
+            margin: auto;
+            height: 100%;
+            width: 60%;
+            color: white;
+            box-sizing: border-box;
+            padding: 15px;
+        }
+</style>

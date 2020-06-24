@@ -1,0 +1,33 @@
+<script>
+    class Toast {
+        constructor(txt = false, style = false) {
+            this.toast = document.createElement("div");
+    
+            this.toast.classList.add("toast");
+            this.toast.setAttribute("style", style || "");
+    
+            this.toast.innerHTML = txt || "";
+    
+            return this;
+        }
+    
+        show() {
+            if (!this.toast.innerHTML)
+                return;
+    
+            document.body.append(this.toast);
+            $(this.toast).slideDown();
+            return this;
+        }
+    
+        destroy(ms = false) {
+            setTimeout(() => $(this.toast).slideUp(400, () => $(this.toast).remove()), ms || 1);
+        }
+    
+        update(txt, style = false) {
+            $(this.toast).html(txt).attr("style", style || this.toast.style);
+    
+            return this;
+        }
+    }
+</script>
