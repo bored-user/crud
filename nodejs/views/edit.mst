@@ -77,20 +77,7 @@
                 $('button:last').on('click', e => {
                     e.preventDefault();
 
-                    fetch('/items/delete/{{slug}}', { method: 'POST' })
-                        .then(res => {
-                            if (res.status !== 200) {
-                                new Toast('The request to delete {{slug}} failed.', 'background-color: #c80003').show().destroy(2500);
-                            } else {
-                                new Toast('\'{{slug}}\' deleted sucesfully!<br>Redirecting...', 'background-color: green').show().destroy(2500);
-                                $('button').off('click').on('click', e => {
-                                    e.preventDefault();
-
-                                    $('.toast').slideUp(400, () => new Toast('The item has already been deleted! Redirecting...').show());
-                                });
-                                setTimeout(() => window.location.href = '/', 3500);
-                            }
-                        });
+                    fetch('/items/delete/{{slug}}', { method: 'POST' }).then(() => window.location.href = '/');
                 });
             </script>
         </div>

@@ -23,10 +23,6 @@ module.exports.item = async (req, res) => {
     res.render('item', item);
 };
 
-module.exports.image = (req, res) => {
-    res.sendFile(`${process.cwd()}/img/${req.params.file}`);
-}
-
 module.exports.edit = async (req, res) => {
     const item = await Item.findOne({ slug: req.params.slug });
     res.render('edit', item);
@@ -50,5 +46,6 @@ module.exports.editAction = async (req, res) => {
 
 module.exports.deleteAction = async (req, res) => {
     const item = await Item.findOneAndDelete({ slug: req.params.slug });
+    req.flash(item ? 'success' : 'error', item ? 'Item sucesfully deleted!' : 'Item was not deleted :(');
     return item ? res.status(200).send() : res.status(400).send();
 };
