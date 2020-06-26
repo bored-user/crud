@@ -1,5 +1,4 @@
-const mongoose = require('mongoose'),
-    slug = require('slug');
+const mongoose = require('mongoose');
 
 mongoose.Promise = global.Promise;
 const schema = new mongoose.Schema({
@@ -24,7 +23,7 @@ const schema = new mongoose.Schema({
 
 schema.pre('save', function (next) {
     if (this.isModified('title')) {
-        this.slug = slug(this.title, { lower: true });
+        this.slug = require('slug')(this.title, { lower: true });
     }
 
     next();
