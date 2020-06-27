@@ -11,9 +11,14 @@
 
     {{#items}}
         <div class="item" onclick="window.location.href += 'items/{{slug}}'" data-slug="{{slug}}">
-            <img src="/assets/img/edit.png">
+            <img id="edit" src="/assets/img/edit.png">
             <h2 style="flex: 1;">{{title}}</h2>
-            <div style="width: 100%; overflow: hidden; flex: 4; margin-bottom: 2em;">{{body}}</div>
+            <div class="body">
+                {{#photo}}
+                    <img src="/media/{{photo}}">
+                {{/photo}}
+                <span>{{body}}</span>
+            </div>
             <div class="extras">
                 <div class="tags">
                     {{#tags}}
@@ -30,16 +35,16 @@
 
         $('.item:not(:first)').hover(function() {
             timeout = setTimeout(() => {
-                $('*:not(img)', this).css('display', 'none');
-                $('img', this).css({ width: '70px', height: '70px', 'opacity': 1 });
+                $('*:not(#edit)', this).css('display', 'none');
+                $('#edit', this).css({ width: '70px', height: '70px', 'opacity': 1 });
 
                 slug = $(this).attr('data-slug');
                 $(this).attr('onclick', `window.location.href += 'items/edit/${slug}'`);
             }, 1500);
         }, function(){
             clearTimeout(timeout);
-            $('*:not(img)', this).css('display', '');
-            $('img', this).css({ width: '', height: '', 'opacity': 0 });
+            $('*:not(#edit)', this).css('display', '');
+            $('#edit', this).css({ width: '', height: '', 'opacity': 0 });
 
             $(this).attr('onclick', `window.location.href += 'items/${slug}'`);
         });

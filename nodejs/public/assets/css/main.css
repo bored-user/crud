@@ -30,11 +30,36 @@ body {
     padding: 15px;
 }
 
-.item img {
+.item #edit {
     width: 0;
     height: 0;
     opacity: 0;
     transition: opacity 500ms;
+}
+
+.item .body {
+    width: 100%;
+    overflow: hidden;
+    flex: 4;
+    margin-bottom: 2em;
+    display: flex;
+    justify-content: space-evenly;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.item .body img {
+    max-width: 50%;
+    width: auto;
+    height: auto;
+    border-radius: 3px;
+    flex: 1;
+}
+
+.item .body span {
+    flex: 2;
+    padding-left: 50px;
+    text-align: justify;
 }
 
 .extras {

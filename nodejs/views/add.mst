@@ -18,10 +18,14 @@
 </head>
 
 <body>
-    <form id="root" method="POST">
+    <form id="root" method="POST" enctype="multipart/form-data">
         <input required style="margin-bottom: 120px" type="text" name="title" placeholder="Title">
         <textarea required name="body" placeholder="Body"></textarea>
-        <input required style="margin-top: 120px; margin-bottom: 40px" type="text" name="tags" placeholder="Tags">
+        <label for="file">
+            <img src="/assets/img/camera.png">
+        </label>
+        <input id="file" type="file" name="photo" accept="image/*">
+        <input required style="margin-top: 60px; margin-bottom: 40px" type="text" name="tags" placeholder="Tags">
         <button>SALVAR</button>
     </form>
 

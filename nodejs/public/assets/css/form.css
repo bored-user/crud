@@ -4,18 +4,24 @@ button {
     color: white;
     background: none;
     box-shadow: none;
+    font-size: 16px;
+    width: 60%;
+}
+
+input,
+textarea,
+button,
+label {
+    margin: auto;
+    display: block;
     border: 1px solid #cccccc;
     border-radius: 3px;
     padding: 15px;
-    font-size: 16px;
-    width: 60%;
-    margin: auto;
-    display: block;
 }
 
 textarea {
-    height: 40%;
-    max-height: 50%;
+    height: 30%;
+    max-height: 40%;
 }
 
 input:focus,
@@ -31,4 +37,19 @@ button {
     border-radius: 30px;
     width: 20%;
     transition: background-color 350ms;
+}
+
+label {
+    width: 8%;
+    box-sizing: border-box;
+    margin-top: 60px;
+    cursor: pointer;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+label img {
+    width: 100%;
 }

@@ -13,20 +13,20 @@
         }
 
         button:nth-of-type(1) {
+            background-color: #c80003;
+        }
+
+        button:nth-of-type(1):hover {
+            background-color: rgba(200, 0, 3, 0.8);
+        }
+
+        button:nth-of-type(2) {
             background-color: #cccccc;
             color: black;
         }
 
-        button:nth-of-type(1):hover {
-            background-color: rgba(204, 204, 204, 0.8);
-        }
-
-        button:nth-of-type(2) {
-            background-color: #c80003;
-        }
-
         button:nth-of-type(2):hover {
-            background-color: rgba(200, 0, 3, 0.8);
+            background-color: rgba(204, 204, 204, 0.8);
         }
     </style>
 </head>
@@ -35,12 +35,21 @@
     <form id="root" method="POST">
         <input required style="margin-bottom: 120px" type="text" name="title" value="{{title}}">
         <textarea required name="body">{{body}}</textarea>
-        <input required style="margin-top: 120px; margin-bottom: 40px" type="text" name="tags" value="{{tags}}">
+        <label for="file">
+            {{#photo}}
+                <img src="/media/{{photo}}">
+            {{/photo}}
+            {{^photo}}
+                <img src="/assets/img/camera.png">
+            {{/photo}}
+        </label>
+        <input id="file" type="file" name="photo" accept="image/*">
+        <input required style="margin-top: 60px; margin-bottom: 40px" type="text" name="tags" value="{{tags}}">
         <div class="btn_container">
-            <button>SALVAR</button>
             <button>DELETAR</button>
+            <button>SALVAR</button>
             <script>
-                $('button:last').on('click', e => {
+                $('button:first').on('click', e => {
                     e.preventDefault();
 
                     fetch('/items/delete/{{slug}}', { method: 'POST' }).then(() => window.location.href = '/');
