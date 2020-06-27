@@ -7,6 +7,7 @@ const schema = new mongoose.Schema({
         trim: true,
         required: true
     },
+    photo: String,
     slug: String,
     body: {
         type: String,
